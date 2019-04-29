@@ -5,7 +5,7 @@
         $dbhostname = 'localhost';
         $dbusername = 'root';
         $dbpassword = '';
-        $dbname = 'test';
+        $dbname = 'restaurant';
 
         $this->mysqli = new mysqli($dbhostname, $dbusername, $dbpassword, $dbname);
 
