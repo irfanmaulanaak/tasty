@@ -42,10 +42,21 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-                    <li class="nav-item active"><a href="menu.php" class="nav-link">Menu</a></li>
-                    <li class="nav-item"><a href="reservation.php" class="nav-link">Reservation</a></li>
                     <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
-                    <li class="nav-item" id="login" style="background: #ffc107 ;border-radius: 5px"><a href="login.php" class="nav-link" style="font-weight: 500;">LOGIN</a></li>
+                    <?php
+				session_start();
+				if(isset($_SESSION['user_system_name'])){
+                    $nama = $_SESSION['user_system_name'];
+                    echo "<li class=\"nav-item\"><a href=\"menu.php\" class=\"nav-link\">Menu</a></li>";
+                    echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
+					echo "<div class=\"nav-item\"><a class=\"nav-link\">$nama</a></div>";
+					echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
+				}else{
+					echo "<li class=\"nav-item\" id=\"register\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
+                    echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
+                    header('Location: index.php');
+				}
+                ?>
                 </ul>
             </div>
         </div>
@@ -65,44 +76,6 @@
             </div>
         </div>
     </section>
-
-    <div class="ftco-section-reservation">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 reservation pt-5 px-5">
-                    <div class="block-17">
-                        <form action="" method="post" class="d-block d-lg-flex">
-                            <div class="fields d-block d-lg-flex">
-
-                                <div class="textfield-name one-third"><input type="text" class="form-control" placeholder="Name"></div>
-
-                                <div class="textfield-phone one-third"><input type="text" class="form-control" placeholder="Phone"></div>
-
-                                <div class="book-date one-third"><input type="text" id="book_date" class="form-control" placeholder="M/D/YYYY"></div>
-
-                                <div class="book-time one-third">
-                                    <input type="text" id="book_time" class="form-control" placeholder="Time">
-                                </div>
-
-                                <div class="select-wrap one-third">
-                                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                    <select name="" id="" class="form-control">
-                                        <option value="">Person</option>
-                                        <option value="">1</option>
-                                        <option value="">2</option>
-                                        <option value="">3</option>
-                                        <option value="">4+</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <input type="submit" class="search-submit btn btn-primary" value="Pesan">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <section class="ftco-section bg-light">
         <div class="container special-dish">
             <div class="row justify-content-center mb-5 pb-5">
@@ -112,62 +85,30 @@
                 </div>
             </div>
             <div class="row d-flex no-gutters">
-                <div class="col-lg-6">
-                    <div class="block-3 d-md-flex ftco-animate">
-                        <div class="image order-last" style="background-image: url(images/restoran_seven.jpg);"></div>
-                        <div class="text text-center order-first">
-                            <h2 class="heading">7 Seven Chicken</h2>
-                            <p>Sebuah Tempat makan dilengkapi Cafe, Co-Working, dan Meeting Room yang nyaman.</p>
-                            <span class="price">Jl. Soekarno Hatta No 5, Malang</span>
-                            
-<!--                            Submit Button-->
-                            <form action="" method="get">
-                                <input style="background: #ffc107 ;border-style: none;border-radius: 5px; margin-top: 10px;font-weight: 900; color: #ffff; padding: 0.5rem 4.4rem;" type="submit" value="Pilih">
+            <?php
+            include_once "db.php";
+            $sql = "SELECT * from restaurant";
+            $result = $mysqli->query($sql);
+            if($result->num_rows){
+                while ($post = $result->fetch_object()){
+                    echo"
+                    <div class=\"col-lg-6\">
+                    <div class=\"block-3 d-md-flex ftco-animate\">
+                      <div class=\"image order-last\" style=\"background-image: url($post->foto);\"></div>
+                      <div class=\"text text-center order-first\">
+                        <h2 class=\"heading\">$post->nama</h2>
+                        <p>$post->deskripsi</p>
+                        <span class=\"price\">$post->jalan</span>
+                        <form action=\"#\" method=\"get\">
+                                <input style=\"background: #ffc107 ;border-style: none;border-radius: 5px; margin-top: 10px;font-weight: 900; color: #ffff; padding: 0.5rem 4.4rem;\" type=\"submit\" value=\"Pilih\">
                             </form>
-                        </div>
+                      </div>
                     </div>
-                    <div class="block-3 d-md-flex ftco-animate">
-                        <div class="image order-first" style="background-image: url(images/restoran_mcd.jpg);"></div>
-                        <div class="text text-center order-first">
-                            <h2 class="heading">McDonald's</h2>
-                            <p>Tempat makan yang cocok untuk kumpul keluarga dan teman</p>
-                            <span class="price">Jl. MT. Haryono No 19, Malang</span>
-                            
-                            <!--                            Submit Button-->
-                            <form action="" method="get">
-                                <input style="background: #ffc107 ;border-style: none;border-radius: 5px; margin-top: 10px;font-weight: 900; color: #ffff; padding: 0.5rem 4.4rem;" type="submit" value="Pilih">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="block-3 d-md-flex ftco-animate">
-                        <div class="image order-last" style="background-image: url(images/restoran_richeese.jpg);"></div>
-                        <div class="text text-center order-first">
-                            <h2 class="heading">Richeese Factory</h2>
-                            <p>Fire Crispy Chickennya menggelegar hidupkan suasana dan balikin mood banget</p>
-                            <span class="price">Jl. Idjen Boulevard No 15 A, Malang</span>
-                            
-                            <!--                            Submit Button-->
-                            <form action="" method="get">
-                                <input style="background: #ffc107 ;border-style: none;border-radius: 5px; margin-top: 10px;font-weight: 900; color: #ffff; padding: 0.5rem 4.4rem;" type="submit" value="Pilih">
-                            </form>
-                        </div>
-                    </div>
-                    <div class="block-3 d-md-flex ftco-animate">
-                        <div class="image order-first" style="background-image: url(images/restoran_jogging.jpg);"></div>
-                        <div class="text text-center order-first">
-                            <h2 class="heading">Mie Jogging</h2>
-                            <p>Setiap helai sruput mienya berasa jongging dipelaminan</p>
-                            <span class="price">Jl. Sawojajar 2 No 27 Blok 9C,Malang</span>
-                            
-                            <!--                            Submit Button-->
-                            <form action="" method="get">
-                                <input style="background: #ffc107 ;border-style: none;border-radius: 5px; margin-top: 10px;font-weight: 900; color: #ffff; padding: 0.5rem 4.4rem;" type="submit" value="Pilih">
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                  </div>";
+                }
+            }
+            ?>
+
             </div>
         </div>
     </section>
@@ -184,257 +125,92 @@
                 <div class="col-md-12 dish-menu">
 
                     <div class="nav nav-pills justify-content-center ftco-animate" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link py-3 px-4 active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><span class="flaticon-meat"></span> Makanan</a>
+                        <a class="nav-link py-3 px-4 active" id="v-pills-makanan-tab" data-toggle="pill" href="#v-pills-makanan" role="tab" aria-controls="v-pills-home" aria-selected="true"><span class="flaticon-meat"></span> Makanan</a>
                         
-                        <a class="nav-link py-3 px-4" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><span class="flaticon-cutlery"></span> Dessert</a>
+                        <a class="nav-link py-3 px-4" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-dimsum" role="tab" aria-controls="v-pills-profile" aria-selected="false"><span class="flaticon-cutlery"></span> Dessert</a>
                         
-                        <a class="nav-link py-3 px-4" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span class="flaticon-cheers"></span> Minuman</a>
+                        <a class="nav-link py-3 px-4" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-minuman" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span class="flaticon-cheers"></span> Minuman</a>
                     </div>
 
                     <div class="tab-content py-5" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <div class="tab-pane fade show active" id="v-pills-makanan" role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/menu_makan_miesetan.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Mie Setan Angel</h3>
-                                                <p><span>Mie tidak pedas</span>, <span>Siomay</span>, <span>Daging</span>, <span>Sayur</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp10000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/menu_makan_miesetan2.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Mie Setan Jin</h3>
-                                                <p><span>Mie pedas sedang</span>, <span>Siomay</span>, <span>Daging</span>, <span>Sayur</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp11000</span>
+                            <?php
+                                    include_once "db.php";
+                                    $sql = "SELECT * from makanan";
+                                    $result = $mysqli->query($sql);
+                                    if($result->num_rows){
+                                        while ($post = $result->fetch_object()){
+                                            echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
+                                            <div class=\"menu-img\" style=\"background-image: url($post->foto_makanan);\"></div>
+                                            <div class=\"text d-flex\">
+                                                <div class=\"one-half\">
+                                                    <h3>$post->nama_makanan</h3>
+                                                    <p>$post->deskripsi_makanan</p>
+                                                </div>
+                                                <div class=\"one-forth\">
+                                                    <span class=\"price\">Rp.$post->harga_makanan</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/menu_makan_miesetan3jpg.JPG);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Mie Setan Iblis</h3>
-                                                <p><span>Mie pedas sekali</span>, <span>Siomay</span>, <span>Daging</span>, <span>Sayur</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp12000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/menu_makan_miesetan4.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Mie Setan Iblis Sekali</h3>
-                                                <p><span>Mie pedas sekali banget</span>, <span>Siomay</span>, <span>Daging</span>, <span>Sayur</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp15000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        </div>";
+                                        }
+                                    }
+                                    ?>
                             </div>
                         </div><!-- END -->
 
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <div class="tab-pane fade" id="v-pills-dimsum" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/menu_dessert_dimsum.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Dimsum Udang Rambutan</h3>
-                                                <p><span>Udang</span>, <span>Tepung</span> </p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp8000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/menu_dessert_dimsum2.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Dimsum Siomay</h3>
-                                                <p><span>Daging</span>, <span>Udang</span>, <span>Pasta</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp8000</span>
+                                    <?php
+                                    include_once "db.php";
+                                    $sql = "SELECT * from dessert";
+                                    $result = $mysqli->query($sql);
+                                    if($result->num_rows){
+                                        while ($post = $result->fetch_object()){
+                                            echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
+                                            <div class=\"menu-img\" style=\"background-image: url($post->foto_dessert);\"></div>
+                                            <div class=\"text d-flex\">
+                                                <div class=\"one-half\">
+                                                    <h3>$post->nama_dessert</h3>
+                                                    <p>$post->deskripsi_dessert</p>
+                                                </div>
+                                                <div class=\"one-forth\">
+                                                    <span class=\"price\">Rp.$post->harga_dessert</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/menu_dessert_dimsum3.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Dimsum Siomay Udang</h3>
-                                                <p><span>Udang</span>, <span>Pasta</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp8000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/menu_dessert_dimsum4.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Dimsum Risoles</h3>
-                                                <p><span>Daging</span>, <span>Sayur</span>, <span>Mie</span>, <span>Pasta</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp8000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/menu_dessert_dimsum5.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Dimsum Siomay Kepiting</h3>
-                                                <p><span>Kepiting</span>, <span>Sayur</span>, <span>Pasta</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp8000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/menu_dessert_dimsum6.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Dimsum Siomay Udang Mahal</h3>
-                                                <p><span>Udang mahal</span>, <span>Sayur</span>, <span>Pasta</span>, <span>Cinta</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp85000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        </div>";
+                                        }
+                                    }
+                                    ?>
                             </div>
                         </div><!-- END -->
 
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <div class="tab-pane fade" id="v-pills-minuman" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/drink-1.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Jus Lemon</h3>
-                                                <p><span>Lemon Australia</span>, <span>Jeruk</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp5000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/drink-2.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Jus Jambu</h3>
-                                                <p><span>Jambu Madura</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp5000</span>
+                            <?php
+                                    include_once "db.php";
+                                    $sql = "SELECT * from minuman";
+                                    $result = $mysqli->query($sql);
+                                    if($result->num_rows){
+                                        while ($post = $result->fetch_object()){
+                                            echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
+                                            <div class=\"menu-img\" style=\"background-image: url($post->foto_minuman);\"></div>
+                                            <div class=\"text d-flex\">
+                                                <div class=\"one-half\">
+                                                    <h3>$post->nama_minuman</h3>
+                                                    <p>$post->deskripsi_minuman</p>
+                                                </div>
+                                                <div class=\"one-forth\">
+                                                    <span class=\"price\">Rp.$post->harga_minuman</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/drink-3.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Sprite</h3>
-                                                <p><span>Sprite bu Rochman</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp9000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/drink-4.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Coca Cola</h3>
-                                                <p><span>Sugar free Cola</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp10000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/drink-6.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Jus Apel</h3>
-                                                <p><span>Apel Siiplah</span>, <span>Daun Teh</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp5000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/drink-7.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Jus Aqua</h3>
-                                                <p><span>Aqua</span>, <span>Cheers</span>, <span>Club</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp5000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/drink-8.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Jus Mangga</h3>
-                                                <p><span>Mangga Manalagi</span>, <span>Susu</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp9500</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(images/drink-9.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>Jus Stroberi</h3>
-                                                <p><span>Stroberi</span></p>
-                                            </div>
-                                            <div class="one-forth">
-                                                <span class="price">Rp11000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        </div>";
+                                        }
+                                    }
+                                    ?>
                             </div>
                         </div>
                     </div>
