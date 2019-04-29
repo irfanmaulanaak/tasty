@@ -20,8 +20,8 @@ if($result->num_rows){
 
         header('Location: index.php');
     }else{
-        echo "Wrong Password!";
+        echo "<script>alert(\"Password Salah\");<script>";
     }
 }else{
-    echo 'Username Not exists!';
+    echo "<script>alert(\"Username tidak terdaftar!\");<script>";
 }

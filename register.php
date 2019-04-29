@@ -32,7 +32,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<div class="login100-form validate-form">
 					<span class="login100-form-title p-b-43">
 						Register to Mamkuy
 					</span>
@@ -65,17 +65,17 @@
 							<div class="contact100-form-checkbox">
 								<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
 								<label class="label-checkbox100" for="ckb1">
-									By creating an account, you agree to our <a href="#">Terms of Service</a>
-									& <a href="#">Privacy Policy</a>
+									By creating an account, you agree to our <a href="#" class="txt1">Terms of Service</a>
+									& <a href="#" class="txt1">Privacy Policy</a>
 								</label>
 							</div>
 						</div>
 
 						<div class="container-login100-form-btn">
-							<input type="button" class="login100-form-btn" value="Sign Up">
+							<input type="submit" class="login100-form-btn" value="Sign Up">
 						</div>
 					</form>
-				</form>
+				</div>
 
 				<div class="login100-more" style="background-image: url('images/image_6.jpg');">
 				</div>
