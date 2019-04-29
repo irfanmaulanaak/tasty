@@ -13,4 +13,7 @@
         }
         include_once "views/$viewName.php";
     }
+    public function index(){
+        include 'mvc/views/home.php';
+    }
 }
