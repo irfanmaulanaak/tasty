@@ -39,12 +39,21 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="menu.php" class="nav-link">Menu</a></li>
-            <li class="nav-item"><a href="specialties.php" class="nav-link">Specialties</a></li>
-            <li class="nav-item active"><a href="reservation.php" class="nav-link">Reservation</a></li>
-            <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
             <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+            <?php
+				session_start();
+				if(isset($_SESSION['user_system_name'])){
+          $nama = $_SESSION['user_system_name'];
+          echo "<li class=\"nav-item\"><a href=\"menu.php\" class=\"nav-link\">Menu</a></li>";
+          echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
+					echo "<div class=\"nav-item\"><a class=\"nav-link\">$nama</a></div>";
+					echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
+				}else{
+					echo "<li class=\"nav-item\" id=\"register\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
+          echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
+          // header('Location: index.php');
+				}
+                ?>
           </ul>
         </div>
       </div>

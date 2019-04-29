@@ -13,4 +13,8 @@
             die('Database connection error!');
         }
     }
+    function selectRestaurant(){
+        $sql = "select * from restaurant";
+        return $this->mysqli->query($sql);
+    }
 }

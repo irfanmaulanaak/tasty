@@ -41,21 +41,20 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
-            
             <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
             <?php
-						session_start();
-						if(isset($_SESSION['user_system_name'])){
-              $nama = $_SESSION['user_system_name'];
-              echo "<li class=\"nav-item\"><a href=\"menu.php\" class=\"nav-link\">Menu</a></li>";
-              echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
-							echo "<div class=\"nav-item\"><a class=\"nav-link\">$nama</a></div>";
-							echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
-						}else{
-							echo "<li class=\"nav-item\" id=\"register\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
-							echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
-						}
-						?>
+				session_start();
+				if(isset($_SESSION['user_system_name'])){
+                    $nama = $_SESSION['user_system_name'];
+                    echo "<li class=\"nav-item\"><a href=\"menu.php\" class=\"nav-link\">Menu</a></li>";
+                    echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
+					echo "<div class=\"nav-item\"><a class=\"nav-link\">$nama</a></div>";
+					echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
+				}else{
+					echo "<li class=\"nav-item\" id=\"register\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
+					echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
+				}
+			?>
           </ul>
         </div>
       </div>
@@ -114,43 +113,6 @@
         </div>
       </div>
     </section>
-    <!-- END slider -->
-
-    <div class="ftco-section-reservation">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 reservation pt-5 px-5">
-            <div class="block-17">
-              <form action="" method="post" class="d-block d-lg-flex">
-                <div class="fields d-block d-lg-flex">
-
-                  <div class="textfield-name one-third"><input type="text" class="form-control" placeholder="Name"></div>
-
-                  <div class="textfield-phone one-third"><input type="text" class="form-control" placeholder="Phone"></div>
-
-                  <div class="book-date one-third"><input type="text" id="book_date" class="form-control" placeholder="M/D/YYYY"></div>
-
-                  <div class="book-time one-third">
-                    <input type="text" id="book_time" class="form-control" placeholder="Time">
-                  </div>
-
-                  <div class="select-wrap one-third">
-                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                    <select name="" id="" class="form-control">
-                      <option value="">Person</option>
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                      <option value="">4+</option>
-                    </select>
-                  </div>
-                </div>
-                <input type="submit" id="guest" class="search-submit btn btn-primary" value="Pesan">  
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
      <section class="ftco-section-2">
@@ -183,42 +145,26 @@
     <section class="ftco-section bg-light">
       <div class="container special-dish">
         <div class="row d-flex no-gutters">
-          <div class="col-lg-6">
-            <div class="block-3 d-md-flex ftco-animate">
-              <div class="image order-last" style="background-image: url(images/restoran_seven.jpg);"></div>
-              <div class="text text-center order-first">
-                <h2 class="heading">7 Seven Chicken</h2>
-                <p>Sebuah Tempat makan dilengkapi Cafe, Co-Working, dan Meeting Room yang nyaman.</p>
-                <span class="price">Jl. Soekarno Hatta No 5, Malang</span>
-              </div>
-            </div>
-            <div class="block-3 d-md-flex ftco-animate">
-              <div class="image order-first" style="background-image: url(images/restoran_mcd.jpg);"></div>
-              <div class="text text-center order-first">
-                <h2 class="heading">McDonald's</h2>
-                <p>Tempat makan yang cocok untuk kumpul keluarga dan teman</p>
-                <span class="price">Jl. MT. Haryono No 19, Malang</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="block-3 d-md-flex ftco-animate">
-              <div class="image order-last" style="background-image: url(images/restoran_richeese.jpg);"></div>
-              <div class="text text-center order-first">
-                <h2 class="heading">Richeese Factory</h2>
-                <p>Fire Crispy Chickennya menggelegar hidupkan suasana dan balikin mood banget</p>
-                <span class="price">Jl. Idjen Boulevard No 15 A, Malang</span>
-              </div>
-            </div>
-            <div class="block-3 d-md-flex ftco-animate">
-              <div class="image order-first" style="background-image: url(images/restoran_jogging.jpg);"></div>
-              <div class="text text-center order-first">
-                <h2 class="heading">Mie Jogging</h2>
-                <p>Setiap helai sruput mienya berasa jongging dipelaminan</p>
-                <span class="price">Jl. Sawojajar 2 No 27 Blok 9C,Malang</span>
-              </div>
-            </div>
-          </div>
+            <?php
+            include_once "db.php";
+            $sql = "SELECT * from restaurant";
+            $result = $mysqli->query($sql);
+            if($result->num_rows){
+                while ($post = $result->fetch_object()){
+                    echo"
+                    <div class=\"col-lg-6\">
+                    <div class=\"block-3 d-md-flex ftco-animate\">
+                      <div class=\"image order-last\" style=\"background-image: url($post->foto);\"></div>
+                      <div class=\"text text-center order-first\">
+                        <h2 class=\"heading\">$post->nama</h2>
+                        <p>$post->deskripsi</p>
+                        <span class=\"price\">$post->jalan</span>
+                      </div>
+                    </div>
+                  </div>";
+                }
+            }
+            ?>
         </div>
       </div>
     </section>

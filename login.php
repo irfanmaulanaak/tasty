@@ -53,22 +53,6 @@
 						<div class="container-login100-form-btn">
 							<input type="submit" value="Login" class="login100-form-btn">
 						</div>
-						
-						<div class="text-center p-t-46 p-b-20">
-							<span class="txt2">
-								or sign up using
-							</span>
-						</div>
-
-						<div class="login100-form-social flex-c-m">
-							<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-								<i class="fa fa-facebook-f" aria-hidden="true"></i>
-							</a>
-
-							<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-								<i class="fa fa-twitter" aria-hidden="true"></i>
-							</a>
-						</div>
 					</form>
 				</div>
 
@@ -101,3 +85,8 @@
 
 </body>
 </html>
+<?php
+session_start();
+if(isset($_SESSION['user_system_name'])){
+	header('Location: index.php');
+}

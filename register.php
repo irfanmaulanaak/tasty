@@ -106,3 +106,8 @@
 
 </body>
 </html>
+<?php
+session_start();
+if(isset($_SESSION['user_system_name'])){
+	header('Location: index.php');
+}

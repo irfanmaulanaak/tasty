@@ -1,19 +1,13 @@
-<?php class Controller {
-
-    public function loadModel($modelName){
-        include_once "models/Model.class.php";
-        include_once "models/$modelName.class.php";
-
-        return new $modelName;
+<?php 
+include "mvc/models/Model.class.php";
+class Controller {
+    public $model;
+    function __construct(){
+        $this->model = new model();
     }
-
-    public function loadView($viewName, $data = []){
-        foreach ($data as $var => $value){
-            $$var = $value;
-        }
-        include_once "views/$viewName.php";
-    }
+    
     public function index(){
+        $data = $this->model->selectRestaurant();
         include 'mvc/views/home.php';
     }
 }
