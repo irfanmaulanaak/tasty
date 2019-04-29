@@ -44,6 +44,7 @@
             <li class="nav-item"><a href="menu.php" class="nav-link">Menu</a></li>
             <li class="nav-item"><a href="reservation.php" class="nav-link">Reservation</a></li>
             <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
+            <li class="nav-item" id="login" style="background: #ffc107 ;border-radius: 5px"><a href="register.php" class="nav-link" style="font-weight: 500;">REGISTER</a></li>
             <li class="nav-item" id="login" style="background: #ffc107 ;border-radius: 5px"><a href="login.php" class="nav-link" style="font-weight: 500;">LOGIN</a></li>
           </ul>
         </div>
