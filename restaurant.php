@@ -31,24 +31,6 @@
 
 <body>
 
-    <?php
-            $id_restaurant=$_GET['id_restaurant'];
-
-            if(!$id_restaurant){
-                header('Location: restaurant.php');
-            }
-           
-            include_once "db.php";
-            $sql = "SELECT * from restaurant where id_restaurant=$id_restaurant";
-            $result = $mysqli->query($sql);
-
-            if(!$result->num_rows){
-                header('Location: post.php');
-            }
-
-            $post = $result->fetch_object();
-    ?>
-
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <div id='logo'><img src='images/logo_white.png' style="width: 60px; height: 60px;"></div>
@@ -82,119 +64,49 @@
     <!-- END nav -->
 
     <section class="home-slider owl-carousel">
-        <div class="slider-item" style="background-image: url('<?php echo $post->foto?>');" data-stellar-background-ratio="0.5">
+        <div class="slider-item" style="background-image: url('images/slideshow_menu-mie%20setan.jpg');" data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row slider-text align-items-center justify-content-center">
                     <div class="col-md-10 col-sm-12 ftco-animate text-center">
-                        <p><?php echo $post->nama?></p>
-                        <h1 class="mb-3">Jelajah menu makanan</h1>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Restaurant</span></p>
+                        <h1 class="mb-3">Temukan tempat makan</h1>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-
     <section class="ftco-section bg-light">
-        <div class="container">
+        <div class="container special-dish">
             <div class="row justify-content-center mb-5 pb-5">
                 <div class="col-md-7 text-center heading-section ftco-animate">
-                    <span class="subheading"><?php echo $post->nama?></span>
-                    <h2>Menu yang Tersedia</h2>
+                    <span class="subheading">Restoran</span>
+                    <h2>Restoran yang Tersedia</h2>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 dish-menu">
-
-                    <div class="nav nav-pills justify-content-center ftco-animate" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link py-3 px-4 active" id="v-pills-makanan-tab" data-toggle="pill" href="#v-pills-makanan" role="tab" aria-controls="v-pills-home" aria-selected="true"><span class="flaticon-meat"></span> Makanan</a>
-                        
-                        <a class="nav-link py-3 px-4" id="v-pills-dessert-tab" data-toggle="pill" href="#v-pills-dessert" role="tab" aria-controls="v-pills-profile" aria-selected="false"><span class="flaticon-cutlery"></span> Dessert</a>
-                        
-                        <a class="nav-link py-3 px-4" id="v-pills-minuman-tab" data-toggle="pill" href="#v-pills-minuman" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span class="flaticon-cheers"></span> Minuman</a>
+            <div class="row d-flex no-gutters">
+            <?php
+            include_once "db.php";
+            $sql = "SELECT * from restaurant";
+            $result = $mysqli->query($sql);
+            if($result->num_rows){
+                while ($post = $result->fetch_object()){
+                    echo"
+                    <div class=\"col-lg-6\">
+                    <div class=\"block-3 d-md-flex ftco-animate\">
+                      <div class=\"image order-last\" style=\"background-image: url($post->foto);\"></div>
+                      <div class=\"text text-center order-first\">
+                        <h2 class=\"heading\">$post->nama</h2>
+                        <p>$post->deskripsi</p>
+                        <span class=\"price\">$post->jalan</span>
+                             <a href=\"menu.php?id_restaurant=$post->id_restaurant\" style=\"background: #ffc107 ;border-style: none;border-radius: 5px; font-weight: 900; color: #ffff; padding: 0.5rem 4.4rem;\">Pilih</a>
+                      </div>
                     </div>
+                  </div>";
+                }
+            }
+            ?>
 
-                    <div class="tab-content py-5" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-makanan" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                            <div class="row">
-                            <?php
-                                    $sql = "SELECT * from makanan where id_restaurant=$id_restaurant";
-                                    $result = $mysqli->query($sql);
-                                    if($result->num_rows){
-                                        while ($post = $result->fetch_object()){
-                                            echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
-                                            <div class=\"menu-img\" style=\"background-image: url($post->foto_makanan);\"></div>
-                                            <div class=\"text d-flex\">
-                                                <div class=\"one-half\">
-                                                    <h3>$post->nama_makanan</h3>
-                                                    <p>$post->deskripsi_makanan</p>
-                                                </div>
-                                                <div class=\"one-forth\">
-                                                    <span class=\"price\">Rp.$post->harga_makanan</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>";
-                                        }
-                                    }
-                                    ?>
-                            </div>
-                        </div><!-- END -->
-
-                        <div class="tab-pane fade" id="v-pills-dessert" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                            <div class="row">
-                                    <?php
-                                    $sql = "SELECT * from dessert where id_restaurant=$id_restaurant";
-                                    $result = $mysqli->query($sql);
-                                    if($result->num_rows){
-                                        while ($post = $result->fetch_object()){
-                                            echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
-                                            <div class=\"menu-img\" style=\"background-image: url($post->foto_dessert);\"></div>
-                                            <div class=\"text d-flex\">
-                                                <div class=\"one-half\">
-                                                    <h3>$post->nama_dessert</h3>
-                                                    <p>$post->deskripsi_dessert</p>
-                                                </div>
-                                                <div class=\"one-forth\">
-                                                    <span class=\"price\">Rp.$post->harga_dessert</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>";
-                                        }
-                                    }
-                                    ?>
-                            </div>
-                        </div><!-- END -->
-
-                        <div class="tab-pane fade" id="v-pills-minuman" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                            <div class="row">
-                            <?php
-                                    $sql = "SELECT * from minuman where id_restaurant=$id_restaurant";
-                                    $result = $mysqli->query($sql);
-                                    if($result->num_rows){
-                                        while ($post = $result->fetch_object()){
-                                            echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
-                                            <div class=\"menu-img\" style=\"background-image: url($post->foto_minuman);\"></div>
-                                            <div class=\"text d-flex\">
-                                                <div class=\"one-half\">
-                                                    <h3>$post->nama_minuman</h3>
-                                                    <p>$post->deskripsi_minuman</p>
-                                                </div>
-                                                <div class=\"one-forth\">
-                                                    <span class=\"price\">Rp.$post->harga_minuman</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>";
-                                        }
-                                    }
-                                    ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

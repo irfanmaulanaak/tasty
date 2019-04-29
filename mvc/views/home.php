@@ -46,13 +46,13 @@
 				session_start();
 				if(isset($_SESSION['user_system_name'])){
                     $nama = $_SESSION['user_system_name'];
-                    echo "<li class=\"nav-item\"><a href=\"menu.php\" class=\"nav-link\">Menu</a></li>";
+                    echo "<li class=\"nav-item\"><a href=\"restaurant.php\" class=\"nav-link\">Restaurant</a></li>";
                     echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
 					echo "<div class=\"nav-item\"><a class=\"nav-link\">$nama</a></div>";
 					echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
 				}else{
-					echo "<li class=\"nav-item\" id=\"register\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
-					echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
+					echo "<li class=\"nav-item\" id=\"register\" style=\"border-style: solid; border-width: 2px; border-color: #ffff ;border-radius: 5px; margin: 5px;\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
+					echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px; margin: 5px;\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
 				}
 			?>
           </ul>
@@ -132,7 +132,7 @@
       </div>
     </section>
 
-    <section class="ftco-section parallax-img" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+    <section class="ftco-section parallax-img" style="background-image: url('images/restoran_populer.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
