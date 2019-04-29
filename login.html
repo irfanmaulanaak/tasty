@@ -28,7 +28,7 @@
 <!--===============================================================================================-->
 </head>
 <body style="background-color: #666666;">
-	hahaha
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
