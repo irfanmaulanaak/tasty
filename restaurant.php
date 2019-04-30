@@ -99,7 +99,7 @@
                         <h2 class=\"heading\">$post->nama</h2>
                         <p>$post->deskripsi</p>
                         <span class=\"price\">$post->jalan</span>
-                             <a href=\"menu.php?id_restaurant=$post->id_restaurant\" style=\"background: #ffc107 ;border-style: none;border-radius: 5px; font-weight: 900; color: #ffff; padding: 0.5rem 4.4rem;\">Pilih</a>
+                        <a href=\"menu.php?id_restaurant=$post->id_restaurant\" style=\"background: #ffc107 ;border-style: none;border-radius: 5px; font-weight: 900; color: #ffff; padding: 0.5rem 4.4rem;\">Pilih</a>
                       </div>
                     </div>
                   </div>";

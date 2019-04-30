@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost';
 $dbusername = 'root';
-$dbpassword = 'root';
+$dbpassword = '';
 $dbname = 'restaurant';
 //i adalah improve. komponen yang ada di php untuk membuat koneksi ke mysql
 $mysqli = new mysqli($host, $dbusername, $dbpassword, $dbname);

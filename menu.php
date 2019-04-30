@@ -106,7 +106,6 @@
             </div>
             <div class="row">
                 <div class="col-md-12 dish-menu">
-
                     <div class="nav nav-pills justify-content-center ftco-animate" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link py-3 px-4 active" id="v-pills-makanan-tab" data-toggle="pill" href="#v-pills-makanan" role="tab" aria-controls="v-pills-home" aria-selected="true"><span class="flaticon-meat"></span> Makanan</a>
                         
@@ -124,14 +123,22 @@
                                     if($result->num_rows){
                                         while ($post = $result->fetch_object()){
                                             echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
+                                            <form method=\"post\" action=\"cart_process.php\">
+                                            <input class=\"input100\" type=\"hidden\" name=\"idres\ value=\"$id_restaurant\">
                                             <div class=\"menu-img\" style=\"background-image: url($post->foto_makanan);\"></div>
+                                            <input class=\"input100\" type=\"hidden\" name=\"fotoprod\" value=\"$post->foto_makanan\">
                                             <div class=\"text d-flex\">
                                                 <div class=\"one-half\">
                                                     <h3>$post->nama_makanan</h3>
+                                                    <input class=\"input100\" type=\"hidden\" name=\"namaprod\" value=\"$post->nama_makanan\">
                                                     <p>$post->deskripsi_makanan</p>
                                                 </div>
                                                 <div class=\"one-forth\">
                                                     <span class=\"price\">Rp.$post->harga_makanan</span>
+                                                    <input class=\"input100\" type=\"hidden\" name=\"hargaprod\" value=\"$post->harga_makanan\">
+                                                    <input class=\"input100\" type=\"hidden\" name=\"username\" value=\"$nama\">
+                                                    <input style=\"background: #ffc107 ;border-radius: 5px\" type=\"submit\" value=\"Beli\">
+
                                                 </div>
                                             </div>
                                         </div>
