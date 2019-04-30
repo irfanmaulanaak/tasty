@@ -44,13 +44,13 @@
 				session_start();
 				if(isset($_SESSION['user_system_name'])){
                     $nama = $_SESSION['user_system_name'];
-                    echo "<li class=\"nav-item\"><a href=\"menu.php\" class=\"nav-link\">Menu</a></li>";
+                    echo "<li class=\"nav-item\"><a href=\"restaurant.php\" class=\"nav-link\">Restaurant</a></li>";
                     echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
 					echo "<div class=\"nav-item\"><a class=\"nav-link\">$nama</a></div>";
 					echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
 				}else{
-					echo "<li class=\"nav-item\" id=\"register\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
-                    echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
+					echo "<li class=\"nav-item\" id=\"register\" style=\"border-style: solid; border-width: 2px; border-color: #ffff ;border-radius: 5px; margin: 5px;\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
+                    echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px; margin: 5px;\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
                     // header('Location: index.php');
 				}
                 ?>
@@ -74,58 +74,31 @@
       </div>
     </section>
     
-    <section class="ftco-section-2">
-      <div class="container d-flex">
-        <div class="section-2-blocks-wrapper row">
-          <div class="img col-sm-12 col-lg-6" style="background-image: url('images/about-2.jpg');">
-          </div>
-          <div class="text col-lg-6 ftco-animate">
-            <div class="text-inner align-self-start">
-              <span class="subheading">About Tasty</span>
-              <h3 class="heading">Our chef cooks the most delicious food for you</h3>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <div class="ftco-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-7 text-center heading-section ftco-animate">
-            <span class="subheading">Our Chef</span>
-            <h2>Our Master Chef</h2>
+            <span class="subheading">Kelompok 5</span>
+            <h2>Our Best Team</h2>
           </div>
         </div>
         <div class="row">
           <div class="col-md-4 ftco-animate">
             <div class="block-10">
               <div class="person-info">
-                <span class="name">Thomas Smith</span>
-                <span class="position">Head Chef</span>
+                <span class="name">Irfan Maulana Akbar</span>
+                <span class="position">175150207111036</span>
               </div>
-              <div class="chef-img" style="background-image: url(images/chef-1.jpg)"></div>
+              <div class="chef-img" style="background-image: url(images/About-irfan.jpg)"></div>
             </div>
           </div>
           <div class="col-md-4 ftco-animate">
             <div class="block-10">
               <div class="person-info">
-                <span class="name">Francis Gibson</span>
-                <span class="position">Assistant Chef</span>
+                <span class="name">Riefqi Ardhya Bisma</span>
+                <span class="position">175150201111050</span>
               </div>
-              <div class="chef-img" style="background-image: url(images/chef-2.jpg)"></div>
-            </div>
-          </div>
-          <div class="col-md-4 ftco-animate">
-            <div class="block-10">
-              <div class="person-info">
-                <span class="name">Angelo Maestro</span>
-                <span class="position">Assistant Chef</span>
-              </div>
-              <div class="chef-img" style="background-image: url(images/chef-3.jpg)"></div>
+              <div class="chef-img" style="background-image: url(images/About-bimbim.jpg)"></div>
             </div>
           </div>
         </div>
