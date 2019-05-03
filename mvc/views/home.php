@@ -46,7 +46,6 @@
 				session_start();
 				if(isset($_SESSION['user_system_name'])){
                     $nama = $_SESSION['user_system_name'];
-                    echo "<li class=\"nav-item\"><a href=\"restaurant.php\" class=\"nav-link\">Restaurant</a></li>";
                     echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
 					echo "<div class=\"nav-item\"><a class=\"nav-link\">$nama</a></div>";
 					echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";

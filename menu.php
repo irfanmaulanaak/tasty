@@ -33,7 +33,8 @@
 
     <?php
             $id_restaurant=$_GET['id_restaurant'];
-
+            session_start();
+            $namauser = $_SESSION['user_system_name'];
             if(!$id_restaurant){
                 header('Location: restaurant.php');
             }
@@ -42,11 +43,11 @@
             $sql = "SELECT * from restaurant where id_restaurant=$id_restaurant";
             $result = $mysqli->query($sql);
 
-            if(!$result->num_rows){
-                header('Location: post.php');
-            }
-
             $post = $result->fetch_object();
+            $sql1 = "SELECT * from user where name='$namauser'";
+            $result1 = $mysqli->query($sql1);
+            $username = $result1->fetch_object();
+            
     ?>
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -62,12 +63,10 @@
                     <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
                     <?php
-				session_start();
 				if(isset($_SESSION['user_system_name'])){
-                    $nama = $_SESSION['user_system_name'];
                     echo "<li class=\"nav-item\"><a href=\"menu.php\" class=\"nav-link\">Menu</a></li>";
                     echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
-					echo "<div class=\"nav-item\"><a class=\"nav-link\">$nama</a></div>";
+					echo "<div class=\"nav-item\"><a class=\"nav-link\">$namauser</a></div>";
 					echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
 				}else{
 					echo "<li class=\"nav-item\" id=\"register\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
@@ -123,8 +122,8 @@
                                     if($result->num_rows){
                                         while ($post = $result->fetch_object()){
                                             echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
-                                            <form method=\"post\" action=\"cart_process.php\">
-                                            <input class=\"input100\" type=\"hidden\" name=\"idres\ value=\"$id_restaurant\">
+                                            <form method=\"GET\" action=\"cart_process.php\">
+                                            <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
                                             <div class=\"menu-img\" style=\"background-image: url($post->foto_makanan);\"></div>
                                             <input class=\"input100\" type=\"hidden\" name=\"fotoprod\" value=\"$post->foto_makanan\">
                                             <div class=\"text d-flex\">
@@ -136,11 +135,11 @@
                                                 <div class=\"one-forth\">
                                                     <span class=\"price\">Rp.$post->harga_makanan</span>
                                                     <input class=\"input100\" type=\"hidden\" name=\"hargaprod\" value=\"$post->harga_makanan\">
-                                                    <input class=\"input100\" type=\"hidden\" name=\"username\" value=\"$nama\">
+                                                    <input class=\"input100\" type=\"hidden\" name=\"username\" value=\"$username->username\">
                                                     <input style=\"background: #ffc107 ;border-radius: 5px\" type=\"submit\" value=\"Beli\">
-
                                                 </div>
                                             </div>
+                                            </form>
                                         </div>
                                         </div>";
                                         }
@@ -151,22 +150,30 @@
 
                         <div class="tab-pane fade" id="v-pills-dessert" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="row">
-                                    <?php
+                            <?php
                                     $sql = "SELECT * from dessert where id_restaurant=$id_restaurant";
                                     $result = $mysqli->query($sql);
                                     if($result->num_rows){
                                         while ($post = $result->fetch_object()){
                                             echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
+                                            <form method=\"GET\" action=\"cart_process.php\">
+                                            <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
                                             <div class=\"menu-img\" style=\"background-image: url($post->foto_dessert);\"></div>
+                                            <input class=\"input100\" type=\"hidden\" name=\"fotoprod\" value=\"$post->foto_dessert\">
                                             <div class=\"text d-flex\">
                                                 <div class=\"one-half\">
                                                     <h3>$post->nama_dessert</h3>
+                                                    <input class=\"input100\" type=\"hidden\" name=\"namaprod\" value=\"$post->nama_dessert\">
                                                     <p>$post->deskripsi_dessert</p>
                                                 </div>
                                                 <div class=\"one-forth\">
                                                     <span class=\"price\">Rp.$post->harga_dessert</span>
+                                                    <input class=\"input100\" type=\"hidden\" name=\"hargaprod\" value=\"$post->harga_dessert\">
+                                                    <input class=\"input100\" type=\"hidden\" name=\"username\" value=\"$username->username\">
+                                                    <input style=\"background: #ffc107 ;border-radius: 5px\" type=\"submit\" value=\"Beli\">
                                                 </div>
                                             </div>
+                                            </form>
                                         </div>
                                         </div>";
                                         }
