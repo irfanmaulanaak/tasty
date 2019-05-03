@@ -190,16 +190,24 @@
                                     if($result->num_rows){
                                         while ($post = $result->fetch_object()){
                                             echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
+                                            <form method=\"GET\" action=\"cart_process.php\">
+                                            <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
                                             <div class=\"menu-img\" style=\"background-image: url($post->foto_minuman);\"></div>
+                                            <input class=\"input100\" type=\"hidden\" name=\"fotoprod\" value=\"$post->foto_minuman\">
                                             <div class=\"text d-flex\">
                                                 <div class=\"one-half\">
                                                     <h3>$post->nama_minuman</h3>
+                                                    <input class=\"input100\" type=\"hidden\" name=\"namaprod\" value=\"$post->nama_minuman\">
                                                     <p>$post->deskripsi_minuman</p>
                                                 </div>
                                                 <div class=\"one-forth\">
-                                                    <span class=\"price\">Rp.$post->harga_minuman</span>
+                                                    <span class=\"price\">Rp.$post->harga_dessert</span>
+                                                    <input class=\"input100\" type=\"hidden\" name=\"hargaprod\" value=\"$post->harga_minuman\">
+                                                    <input class=\"input100\" type=\"hidden\" name=\"username\" value=\"$username->username\">
+                                                    <input style=\"background: #ffc107 ;border-radius: 5px\" type=\"submit\" value=\"Beli\">
                                                 </div>
                                             </div>
+                                            </form>
                                         </div>
                                         </div>";
                                         }
