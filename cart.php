@@ -54,11 +54,10 @@
           <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
           <li class="nav-item active"><a href="cart.php" class="nav-link">Cart</a></li>
           <?php
-          session_start();
           if (isset($_SESSION['user_system_name'])) {
             echo "<li class=\"nav-item\"><a href=\"restaurant.php\" class=\"nav-link\">Restaurant</a></li>";
             echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
-            echo "<div class=\"nav-item\"><a class=\"nav-link\">$nama</a></div>";
+            echo "<div class=\"nav-item\"><a class=\"nav-link\">$namauser</a></div>";
             echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
           } else {
             echo "<li class=\"nav-item\" id=\"register\" style=\"border-style: solid; border-width: 2px; border-color: #ffff ;border-radius: 5px; margin: 5px;\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
@@ -109,7 +108,36 @@
           <tbody>
             <tr>
               <td data-th="Product">
-                <div class="row">
+              <?php
+              include_once "db.php";
+              $sql = "SELECT * from cart";
+              $result = $mysqli->query($sql);
+              if($result->num_rows){
+                while($post = $result->fetch_object()){
+                  echo "
+                  
+                  <div class=\"row\">
+                  <div class=\"col-sm-3\"><img src=\"$post->foto_produk\" width=\"90\" height=\"90\" /></div>
+                  <div class=\"col-sm-9\">
+                    <h4 class=\"nomargin\">$post->nama_produk</h4>
+                    <p>Quis aute iure reprehenderit in voluptate velit.</p>
+                  </div>
+                </div>
+              </td>+
+              <td data-th=\"Price\">$1.99</td>
+              <td data-th=\"Quantity\">
+                <input type=\"number\" class=\"form-control text-center\" value=\"1\">
+              </td>
+              <td data-th=\"Subtotal\" class=\"text-center\">1.99</td>
+              <td class=\"actions\" data-th=\"\">
+                <button class=\"btn btn-info btn-sm\"><i class=\"fa fa-refresh\"></i></button>
+                <button class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash-o\"></i></button>
+                  ";
+                }
+              }
+
+              ?>
+                <!-- <div class="row">
                   <div class="col-sm-3 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>
                   <div class="col-sm-9">
                     <h4 class="nomargin">Product 1</h4>
@@ -124,7 +152,7 @@
               <td data-th="Subtotal" class="text-center">1.99</td>
               <td class="actions" data-th="">
                 <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button> -->
               </td>
             </tr>
           </tbody>

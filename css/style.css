@@ -106,6 +106,14 @@ p {
     margin-bottom: 1rem;
 }
 
+.img-cart{
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+}
+
 abbr[title],
 abbr[data-original-title] {
     text-decoration: underline;
@@ -222,6 +230,7 @@ pre {
 figure {
     margin: 0 0 1rem;
 }
+
 
 img {
     vertical-align: middle;
