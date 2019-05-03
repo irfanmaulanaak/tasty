@@ -99,13 +99,13 @@
       <tr>
         <td data-th="Product">
           <div class="row">
-            <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>
-            <div class="col-sm-10">
+            <div class="col-sm-3 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>
+            <div class="col-sm-9">
               <h4 class="nomargin">Product 1</h4>
-              <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+              <p>Quis aute iure reprehenderit in voluptate velit.</p>
             </div>
           </div>
-        </td>
+        </td>+
         <td data-th="Price">$1.99</td>
         <td data-th="Quantity">
           <input type="number" class="form-control text-center" value="1">
