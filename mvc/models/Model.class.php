@@ -4,7 +4,7 @@
     public function __construct(){
         $dbhostname = 'localhost';
         $dbusername = 'root';
-        $dbpassword = '';
+        $dbpassword = 'root';
         $dbname = 'restaurant';
 
         $this->mysqli = new mysqli($dbhostname, $dbusername, $dbpassword, $dbname);
