@@ -52,11 +52,11 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-          <li class="nav-item active"><a href="cart.php" class="nav-link">Cart</a></li>
+          <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
           <?php
           if (isset($_SESSION['user_system_name'])) {
-            echo "<li class=\"nav-item\"><a href=\"restaurant.php\" class=\"nav-link\">Restaurant</a></li>";
             echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
+            echo "<li class=\"nav-item active\"><a href=\"cart.php\" class=\"nav-link\">Cart</a></li>";
             echo "<div class=\"nav-item\"><a class=\"nav-link\">$namauser</a></div>";
             echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
           } else {
@@ -98,61 +98,39 @@
         <table id="cart" class="table table-hover table-condensed">
           <thead>
             <tr>
-              <th style="width:50%">Product</th>
+              <th style="width:90%">Product</th>
               <th style="width:10%">Price</th>
-              <th style="width:8%">Quantity</th>
-              <th style="width:22%" class="text-center">Subtotal</th>
               <th style="width:10%"></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td data-th="Product">
-              <?php
-              include_once "db.php";
-              $sql = "SELECT * from cart";
-              $result = $mysqli->query($sql);
-              if($result->num_rows){
-                while($post = $result->fetch_object()){
-                  echo "
-                  
+                <?php
+                include_once "db.php";
+                $sql = "SELECT * from cart";
+                $result = $mysqli->query($sql);
+                if ($result->num_rows) {
+                  while ($post = $result->fetch_object()) {
+                    echo "
                   <div class=\"row\">
                   <div class=\"col-sm-3\"><img src=\"$post->foto_produk\" width=\"90\" height=\"90\" /></div>
                   <div class=\"col-sm-9\">
                     <h4 class=\"nomargin\">$post->nama_produk</h4>
-                    <p>Quis aute iure reprehenderit in voluptate velit.</p>
-                  </div>
-                </div>
-              </td>+
-              <td data-th=\"Price\">$1.99</td>
-              <td data-th=\"Quantity\">
-                <input type=\"number\" class=\"form-control text-center\" value=\"1\">
-              </td>
-              <td data-th=\"Subtotal\" class=\"text-center\">1.99</td>
-              <td class=\"actions\" data-th=\"\">
-                <button class=\"btn btn-info btn-sm\"><i class=\"fa fa-refresh\"></i></button>
-                <button class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash-o\"></i></button>
-                  ";
-                }
-              }
+                    <button class=\"btn btn-info btn-sm\"><i class=\"fa fa-refresh\"></i></button>
+                    <button class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash-o\"></i></button>
+                    <td data-th=\"Price\">$post->harga_produk</td>
 
-              ?>
-                <!-- <div class="row">
-                  <div class="col-sm-3 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>
-                  <div class="col-sm-9">
-                    <h4 class="nomargin">Product 1</h4>
-                    <p>Quis aute iure reprehenderit in voluptate velit.</p>
                   </div>
                 </div>
-              </td>+
-              <td data-th="Price">$1.99</td>
-              <td data-th="Quantity">
-                <input type="number" class="form-control text-center" value="1">
+                
+                  ";
+                  }
+                }
+
+                ?>
               </td>
-              <td data-th="Subtotal" class="text-center">1.99</td>
               <td class="actions" data-th="">
-                <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button> -->
               </td>
             </tr>
           </tbody>
@@ -188,15 +166,15 @@
         </div>
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Opening Hours</h2>
+            <h2 class="ftco-heading-2">Jam Kerja</h2>
             <ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">Monday: <span>08: - 22:00</span></a></li>
-              <li><a href="#" class="py-2 d-block">Tuesday: <span>08: - 22:00</span></a></li>
-              <li><a href="#" class="py-2 d-block">Wednesday: <span>08: - 22:00</span></a></li>
-              <li><a href="#" class="py-2 d-block">Thursday: <span>08: - 22:00</span></a></li>
-              <li><a href="#" class="py-2 d-block">Friday: <span>08: - 22:00</span></a></li>
-              <li><a href="#" class="py-2 d-block">Saturday: <span>08: - 22:00</span></a></li>
-              <li><a href="#" class="py-2 d-block">Sunday: <span>08: - 22:00</span></a></li>
+              <li><a href="#" class="py-2 d-block">Senin: <span>08: - 22:00</span></a></li>
+              <li><a href="#" class="py-2 d-block">Selasa: <span>08: - 22:00</span></a></li>
+              <li><a href="#" class="py-2 d-block">Rabu: <span>08: - 22:00</span></a></li>
+              <li><a href="#" class="py-2 d-block">Kamis: <span>08: - 22:00</span></a></li>
+              <li><a href="#" class="py-2 d-block">Jumat: <span>08: - 22:00</span></a></li>
+              <li><a href="#" class="py-2 d-block">Sabtu: <span>08: - 22:00</span></a></li>
+              <li><a href="#" class="py-2 d-block">Minggu: <span>08: - 22:00</span></a></li>
             </ul>
           </div>
         </div>
@@ -204,7 +182,7 @@
           <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">Contact Information</h2>
             <ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">198 West 21th Street, Suite 721 New York NY 10016</a>
+              <li><a href="#" class="py-2 d-block">Jl. Veteran Malang Indonesia</a>
               </li>
               <li><a href="#" class="py-2 d-block">+ 1235 2355 98</a></li>
               <li><a href="#" class="py-2 d-block">info@yoursite.com</a></li>

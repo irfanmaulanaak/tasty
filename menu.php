@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Mamkuy - Easy Food Reservation</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,22 +33,22 @@
 <body>
 
     <?php
-            $id_restaurant=$_GET['id_restaurant'];
-            session_start();
-            $namauser = $_SESSION['user_system_name'];
-            if(!$id_restaurant){
-                header('Location: restaurant.php');
-            }
-           
-            include_once "db.php";
-            $sql = "SELECT * from restaurant where id_restaurant=$id_restaurant";
-            $result = $mysqli->query($sql);
+    $id_restaurant = $_GET['id_restaurant'];
+    session_start();
+    $namauser = $_SESSION['user_system_name'];
+    if (!$id_restaurant) {
+        header('Location: restaurant.php');
+    }
 
-            $post = $result->fetch_object();
-            $sql1 = "SELECT * from user where name='$namauser'";
-            $result1 = $mysqli->query($sql1);
-            $username = $result1->fetch_object();
-            
+    include_once "db.php";
+    $sql = "SELECT * from restaurant where id_restaurant=$id_restaurant";
+    $result = $mysqli->query($sql);
+
+    $post = $result->fetch_object();
+    $sql1 = "SELECT * from user where name='$namauser'";
+    $result1 = $mysqli->query($sql1);
+    $username = $result1->fetch_object();
+
     ?>
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -63,17 +64,17 @@
                     <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
                     <?php
-				if(isset($_SESSION['user_system_name'])){
-                    echo "<li class=\"nav-item\"><a href=\"menu.php\" class=\"nav-link\">Menu</a></li>";
-                    echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
-					echo "<div class=\"nav-item\"><a class=\"nav-link\">$namauser</a></div>";
-					echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
-				}else{
-					echo "<li class=\"nav-item\" id=\"register\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
-                    echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
-                    header('Location: index.php');
-				}
-                ?>
+                    if (isset($_SESSION['user_system_name'])) {
+                        echo "<li class=\"nav-item\"><a href=\"menu.php\" class=\"nav-link\">Menu</a></li>";
+                        echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
+                        echo "<div class=\"nav-item\"><a class=\"nav-link\">$namauser</a></div>";
+                        echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
+                    } else {
+                        echo "<li class=\"nav-item\" id=\"register\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
+                        echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
+                        header('Location: index.php');
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -81,12 +82,12 @@
     <!-- END nav -->
 
     <section class="home-slider owl-carousel">
-        <div class="slider-item" style="background-image: url('<?php echo $post->foto?>');" data-stellar-background-ratio="0.5">
+        <div class="slider-item" style="background-image: url('<?php echo $post->foto ?>');" data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row slider-text align-items-center justify-content-center">
                     <div class="col-md-10 col-sm-12 ftco-animate text-center">
-                        <p><?php echo $post->nama?></p>
+                        <p><?php echo $post->nama ?></p>
                         <h1 class="mb-3">Jelajah menu makanan</h1>
                     </div>
                 </div>
@@ -99,7 +100,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5 pb-5">
                 <div class="col-md-7 text-center heading-section ftco-animate">
-                    <span class="subheading"><?php echo $post->nama?></span>
+                    <span class="subheading"><?php echo $post->nama ?></span>
                     <h2>Menu yang Tersedia</h2>
                 </div>
             </div>
@@ -107,21 +108,21 @@
                 <div class="col-md-12 dish-menu">
                     <div class="nav nav-pills justify-content-center ftco-animate" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link py-3 px-4 active" id="v-pills-makanan-tab" data-toggle="pill" href="#v-pills-makanan" role="tab" aria-controls="v-pills-home" aria-selected="true"><span class="flaticon-meat"></span> Makanan</a>
-                        
+
                         <a class="nav-link py-3 px-4" id="v-pills-dessert-tab" data-toggle="pill" href="#v-pills-dessert" role="tab" aria-controls="v-pills-profile" aria-selected="false"><span class="flaticon-cutlery"></span> Dessert</a>
-                        
+
                         <a class="nav-link py-3 px-4" id="v-pills-minuman-tab" data-toggle="pill" href="#v-pills-minuman" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span class="flaticon-cheers"></span> Minuman</a>
                     </div>
 
                     <div class="tab-content py-5" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-makanan" role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <div class="row">
-                            <?php
-                                    $sql = "SELECT * from makanan where id_restaurant=$id_restaurant";
-                                    $result = $mysqli->query($sql);
-                                    if($result->num_rows){
-                                        while ($post = $result->fetch_object()){
-                                            echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
+                                <?php
+                                $sql = "SELECT * from makanan where id_restaurant=$id_restaurant";
+                                $result = $mysqli->query($sql);
+                                if ($result->num_rows) {
+                                    while ($post = $result->fetch_object()) {
+                                        echo "<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
                                             <form method=\"GET\" action=\"cart_process.php\">
                                             <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
                                             <div class=\"menu-img\" style=\"background-image: url($post->foto_makanan);\"></div>
@@ -142,20 +143,20 @@
                                             </form>
                                         </div>
                                         </div>";
-                                        }
                                     }
-                                    ?>
+                                }
+                                ?>
                             </div>
                         </div><!-- END -->
 
                         <div class="tab-pane fade" id="v-pills-dessert" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="row">
-                            <?php
-                                    $sql = "SELECT * from dessert where id_restaurant=$id_restaurant";
-                                    $result = $mysqli->query($sql);
-                                    if($result->num_rows){
-                                        while ($post = $result->fetch_object()){
-                                            echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
+                                <?php
+                                $sql = "SELECT * from dessert where id_restaurant=$id_restaurant";
+                                $result = $mysqli->query($sql);
+                                if ($result->num_rows) {
+                                    while ($post = $result->fetch_object()) {
+                                        echo "<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
                                             <form method=\"GET\" action=\"cart_process.php\">
                                             <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
                                             <div class=\"menu-img\" style=\"background-image: url($post->foto_dessert);\"></div>
@@ -176,20 +177,20 @@
                                             </form>
                                         </div>
                                         </div>";
-                                        }
                                     }
-                                    ?>
+                                }
+                                ?>
                             </div>
                         </div><!-- END -->
 
                         <div class="tab-pane fade" id="v-pills-minuman" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                             <div class="row">
-                            <?php
-                                    $sql = "SELECT * from minuman where id_restaurant=$id_restaurant";
-                                    $result = $mysqli->query($sql);
-                                    if($result->num_rows){
-                                        while ($post = $result->fetch_object()){
-                                            echo"<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
+                                <?php
+                                $sql = "SELECT * from minuman where id_restaurant=$id_restaurant";
+                                $result = $mysqli->query($sql);
+                                if ($result->num_rows) {
+                                    while ($post = $result->fetch_object()) {
+                                        echo "<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
                                             <form method=\"GET\" action=\"cart_process.php\">
                                             <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
                                             <div class=\"menu-img\" style=\"background-image: url($post->foto_minuman);\"></div>
@@ -210,9 +211,9 @@
                                             </form>
                                         </div>
                                         </div>";
-                                        }
                                     }
-                                    ?>
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -237,15 +238,15 @@
                 </div>
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Opening Hours</h2>
+                        <h2 class="ftco-heading-2">Jam Kerja</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">Monday: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Tuesday: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Wednesday: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Thursday: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Friday: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Saturday: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Sunday: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Senin: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Selasa: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Rabu: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Kamis: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Jumat: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Sabtu: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Minggu: <span>08: - 22:00</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -253,7 +254,8 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Contact Information</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">198 West 21th Street, Suite 721 New York NY 10016</a></li>
+                            <li><a href="#" class="py-2 d-block">Jl. Veteran Malang Indonesia</a>
+                            </li>
                             <li><a href="#" class="py-2 d-block">+ 1235 2355 98</a></li>
                             <li><a href="#" class="py-2 d-block">info@yoursite.com</a></li>
                             <li><a href="#" class="py-2 d-block">email@email.com</a></li>
@@ -302,4 +304,5 @@
     <script src="js/main.js"></script>
 
 </body>
+
 </html>

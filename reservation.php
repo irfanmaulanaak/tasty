@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Mamkuy - Easy Food Reservation</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -44,18 +45,19 @@
                     <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
                     <?php
-				session_start();
-				if(isset($_SESSION['user_system_name'])){
-                    $nama = $_SESSION['user_system_name'];
-                    echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
-					echo "<div class=\"nav-item\"><a class=\"nav-link\">$nama</a></div>";
-					echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
-				}else{
-					echo "<li class=\"nav-item\" id=\"register\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
-                    echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
-                    header('Location: index.php');
-				}
-                ?>
+                    session_start();
+                    if (isset($_SESSION['user_system_name'])) {
+                        $nama = $_SESSION['user_system_name'];
+                        echo "<li class=\"nav-item active\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
+                        echo "<li class=\"nav-item\"><a href=\"cart.php\" class=\"nav-link\">Cart</a></li>";
+                        echo "<div class=\"nav-item\"><a class=\"nav-link\">$nama</a></div>";
+                        echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
+                    } else {
+                        echo "<li class=\"nav-item\" id=\"register\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
+                        echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
+                        header('Location: index.php');
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -84,13 +86,13 @@
                 </div>
             </div>
             <div class="row d-flex no-gutters">
-            <?php
-            include_once "db.php";
-            $sql = "SELECT * from restaurant";
-            $result = $mysqli->query($sql);
-            if($result->num_rows){
-                while ($post = $result->fetch_object()){
-                    echo"
+                <?php
+                include_once "db.php";
+                $sql = "SELECT * from restaurant";
+                $result = $mysqli->query($sql);
+                if ($result->num_rows) {
+                    while ($post = $result->fetch_object()) {
+                        echo "
                     <div class=\"col-lg-6\">
                     <div class=\"block-3 d-md-flex ftco-animate\">
                       <div class=\"image order-last\" style=\"background-image: url($post->foto);\"></div>
@@ -102,9 +104,9 @@
                       </div>
                     </div>
                   </div>";
+                    }
                 }
-            }
-            ?>
+                ?>
 
             </div>
         </div>
@@ -126,15 +128,15 @@
                 </div>
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Opening Hours</h2>
+                        <h2 class="ftco-heading-2">Jam Kerja</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">Monday: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Tuesday: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Wednesday: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Thursday: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Friday: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Saturday: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Sunday: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Senin: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Selasa: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Rabu: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Kamis: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Jumat: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Sabtu: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Minggu: <span>08: - 22:00</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -142,7 +144,8 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Contact Information</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">198 West 21th Street, Suite 721 New York NY 10016</a></li>
+                            <li><a href="#" class="py-2 d-block">Jl. Veteran Malang Indonesia</a>
+                            </li>
                             <li><a href="#" class="py-2 d-block">+ 1235 2355 98</a></li>
                             <li><a href="#" class="py-2 d-block">info@yoursite.com</a></li>
                             <li><a href="#" class="py-2 d-block">email@email.com</a></li>
@@ -191,4 +194,5 @@
     <script src="js/main.js"></script>
 
 </body>
+
 </html>
