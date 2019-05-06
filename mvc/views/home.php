@@ -35,7 +35,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <div id='logo'><img src='images/logo_white.png' style="width: 60px; height: 60px;"></div>
-      <a class="navbar-brand" href="index.html">Mamkuy</a>
+      <a class="navbar-brand" href="index.php">Mamkuy</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>

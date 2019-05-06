@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
-  <title>Tasty - Free Bootstrap 4 Template by Colorlib</title>
+  <title>Mamkuy - Easy Food Reservation</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="icon" type="image/png" href="images/logo2.png">
   <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 
@@ -33,7 +34,8 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Tasty</a>
+      <div id='logo'><img src='images/logo_white.png' style="width: 60px; height: 60px;"></div>
+      <a class="navbar-brand" href="index.php">Mamkuy</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>

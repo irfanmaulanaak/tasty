@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>Tasty - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Mamkuy - Easy Food Reservation</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="icon" type="image/png" href="images/logo2.png">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 
@@ -44,7 +45,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Tasty</a>
+            <div id='logo'><img src='images/logo_white.png' style="width: 60px; height: 60px;"></div>
+            <a class="navbar-brand" href="index.php">Mamkuy</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
@@ -98,7 +100,7 @@
                 <table id="cart" class="table table-hover table-condensed">
                     <thead>
                         <tr>
-                            <th style="width:90%">Product</th>
+                            <th style="width:50%">Product</th>
                             <th style="width:10%">Price</th>
                             <th style="width:10%"></th>
                         </tr>
@@ -107,12 +109,12 @@
                         <!-- <tr>
                             <td data-th="Product"> -->
                         <?php
-                        include_once "db.php";
                         $sql = "SELECT * from cart";
                         $result = $mysqli->query($sql);
                         $total = 0;
                         if ($result->num_rows) {
                             while ($post = $result->fetch_object()) {
+                                $total += $post->harga_produk;
                                 echo "
                                 <form action=\"delete_cart.php\" method=\"post\">
                                 <tr>
@@ -124,11 +126,10 @@
                                             <div class=\"col-sm-9\">
                                                 <h4 class=\"nomargin\">$post->nama_produk</h4>
                                                 <input type=\"submit\" value=\"Hapus\" class=\"btn btn-danger btn-sm fa fa-trash-o\">
-                                    <td data-th=\"Price\">$post->harga_produk</td>";
-                                    $total += $post->harga_produk;
-                                    echo"</div>
-                                    </div>
+                                            </div>
+                                            </div>
                                     </td>
+                                    <td data-th=\"Price\">Rp.$post->harga_produk</td>
                                 </tr>
                             </form>               
                             ";
@@ -144,7 +145,7 @@
                                     Continue Shopping</a></td>
                             <td colspan="2" class="hidden-xs"></td>
                             <td class="hidden-xs text-center"><strong>Total Rp.<?php echo($total);?></strong></td>
-                            <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+                            <td><a href="invoice.php" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
                         </tr>
                     </tfoot>
                 </table>

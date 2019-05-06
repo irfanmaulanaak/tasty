@@ -54,7 +54,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <div id='logo'><img src='images/logo_white.png' style="width: 60px; height: 60px;"></div>
-            <a class="navbar-brand" href="index.html">Mamkuy</a>
+            <a class="navbar-brand" href="index.php">Mamkuy</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
@@ -113,7 +113,8 @@
 
                         <a class="nav-link py-3 px-4" id="v-pills-minuman-tab" data-toggle="pill" href="#v-pills-minuman" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span class="flaticon-cheers"></span> Minuman</a>
                     </div>
-
+    
+    
                     <div class="tab-content py-5" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-makanan" role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <div class="row">
@@ -122,25 +123,28 @@
                                 $result = $mysqli->query($sql);
                                 if ($result->num_rows) {
                                     while ($post = $result->fetch_object()) {
-                                        echo "<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\" style=\"position : relative\">
-                                            <form method=\"GET\" action=\"cart_process.php\">
-                                            <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
-                                            <div class=\"menu-img\" style=\"background-image: url($post->foto_makanan);\"></div>
-                                            <input class=\"input100\" type=\"hidden\" name=\"fotoprod\" value=\"$post->foto_makanan\">
-                                            <div class=\"text d-flex\">
-                                                <div class=\"one-half \">
-                                                    <h3>$post->nama_makanan</h3>
-                                                    <input class=\"input100\" type=\"hidden\" name=\"namaprod\" value=\"$post->nama_makanan\">
-                                                    <p>$post->deskripsi_makanan</p>
-                                                </div>
-                                                <div class=\"one-forth \">
-                                                    <span class=\"price\">Rp.$post->harga_makanan</span>
-                                                    <input class=\"input100\" type=\"hidden\" name=\"hargaprod\" value=\"$post->harga_makanan\">
-                                                    <input class=\"input100\" type=\"hidden\" name=\"username\" value=\"$username->username\">
-                                                    <input style=\"background: #ffc107 ;border-radius: 5px; position: absolute; top: 20px; right: 20px; width: 200px;\" type=\"submit\" value=\"Beli\">
-                                                </div>
+                                        echo "<div class=\"col-lg-6\">
+                                        <div class=\"menus d-flex ftco-animate\">
+                                        <div class=\"menu-img\" style=\"background-image: url($post->foto_makanan);\"></div>
+                                        <div class=\"text d-flex\">
+                                            <div class=\"one-half\">
+                                                <h3>$post->nama_makanan</h3>
+                                                <p>$post->deskripsi_makanan</p>
                                             </div>
-                                            </form>
+                                            <div class=\"one-forth\">
+                                                <span class=\"price\">Rp.$post->harga_makanan</span>
+                                                <form method=\"GET\" action=\"cart_process.php\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"fotoprod\" value=\"$post->foto_makanan\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"namaprod\" value=\"$post->nama_makanan\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"hargaprod\" value=\"$post->harga_makanan\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"username\" value=\"$username->username\">
+                                                <input class=\"btn btn-warning\" style=\"width: 110px;\" type=\"submit\" value=\"Beli\">
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div>
+                                        </div>
                                         </div>
                                         </div>";
                                     }
@@ -156,25 +160,28 @@
                                 $result = $mysqli->query($sql);
                                 if ($result->num_rows) {
                                     while ($post = $result->fetch_object()) {
-                                        echo "<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
-                                            <form method=\"GET\" action=\"cart_process.php\">
-                                            <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
-                                            <div class=\"menu-img\" style=\"background-image: url($post->foto_dessert);\"></div>
-                                            <input class=\"input100\" type=\"hidden\" name=\"fotoprod\" value=\"$post->foto_dessert\">
-                                            <div class=\"text d-flex\">
-                                                <div class=\"one-half\">
-                                                    <h3>$post->nama_dessert</h3>
-                                                    <input class=\"input100\" type=\"hidden\" name=\"namaprod\" value=\"$post->nama_dessert\">
-                                                    <p>$post->deskripsi_dessert</p>
-                                                </div>
-                                                <div class=\"one-forth\">
-                                                    <span class=\"price\">Rp.$post->harga_dessert</span>
-                                                    <input class=\"input100\" type=\"hidden\" name=\"hargaprod\" value=\"$post->harga_dessert\">
-                                                    <input class=\"input100\" type=\"hidden\" name=\"username\" value=\"$username->username\">
-                                                    <input style=\"background: #ffc107 ;border-radius: 5px\" type=\"submit\" value=\"Beli\">
-                                                </div>
+                                        echo "<div class=\"col-lg-6\">
+                                        <div class=\"menus d-flex ftco-animate\">
+                                        <div class=\"menu-img\" style=\"background-image: url($post->foto_dessert);\"></div>
+                                        <div class=\"text d-flex\">
+                                            <div class=\"one-half\">
+                                                <h3>$post->nama_dessert</h3>
+                                                <p>$post->deskripsi_dessert</p>
                                             </div>
-                                            </form>
+                                            <div class=\"one-forth\">
+                                                <span class=\"price\">Rp.$post->harga_dessert</span>
+                                                <form method=\"GET\" action=\"cart_process.php\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"fotoprod\" value=\"$post->foto_dessert\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"namaprod\" value=\"$post->nama_dessert\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"hargaprod\" value=\"$post->harga_dessert\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"username\" value=\"$username->username\">
+                                                <input class=\"btn btn-warning\" style=\"width: 110px;\" type=\"submit\" value=\"Beli\">
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div>
+                                        </div>
                                         </div>
                                         </div>";
                                     }
@@ -190,25 +197,28 @@
                                 $result = $mysqli->query($sql);
                                 if ($result->num_rows) {
                                     while ($post = $result->fetch_object()) {
-                                        echo "<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
-                                            <form method=\"GET\" action=\"cart_process.php\">
-                                            <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
-                                            <div class=\"menu-img\" style=\"background-image: url($post->foto_minuman);\"></div>
-                                            <input class=\"input100\" type=\"hidden\" name=\"fotoprod\" value=\"$post->foto_minuman\">
-                                            <div class=\"text d-flex\">
-                                                <div class=\"one-half\">
-                                                    <h3>$post->nama_minuman</h3>
-                                                    <input class=\"input100\" type=\"hidden\" name=\"namaprod\" value=\"$post->nama_minuman\">
-                                                    <p>$post->deskripsi_minuman</p>
-                                                </div>
-                                                <div class=\"one-forth\">
-                                                    <span class=\"price\">Rp.$post->harga_dessert</span>
-                                                    <input class=\"input100\" type=\"hidden\" name=\"hargaprod\" value=\"$post->harga_minuman\">
-                                                    <input class=\"input100\" type=\"hidden\" name=\"username\" value=\"$username->username\">
-                                                    <input style=\"background: #ffc107 ;border-radius: 5px\" type=\"submit\" value=\"Beli\">
-                                                </div>
+                                        echo "<div class=\"col-lg-6\">
+                                        <div class=\"menus d-flex ftco-animate\">
+                                        <div class=\"menu-img\" style=\"background-image: url($post->foto_minuman);\"></div>
+                                        <div class=\"text d-flex\">
+                                            <div class=\"one-half\">
+                                                <h3>$post->nama_minuman</h3>
+                                                <p>$post->deskripsi_minuman</p>
                                             </div>
-                                            </form>
+                                            <div class=\"one-forth\">
+                                                <span class=\"price\">Rp.$post->harga_minuman</span>
+                                                <form method=\"GET\" action=\"cart_process.php\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"fotoprod\" value=\"$post->foto_minuman\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"namaprod\" value=\"$post->nama_minuman\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"hargaprod\" value=\"$post->harga_minuman\">
+                                                <input class=\"input100\" type=\"hidden\" name=\"username\" value=\"$username->username\">
+                                                <input class=\"btn btn-warning\" style=\"width: 110px;\" type=\"submit\" value=\"Beli\">
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div>
+                                        </div>
                                         </div>
                                         </div>";
                                     }
