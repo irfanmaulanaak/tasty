@@ -65,8 +65,8 @@
                     <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
                     <?php
                     if (isset($_SESSION['user_system_name'])) {
-                        echo "<li class=\"nav-item\"><a href=\"menu.php\" class=\"nav-link\">Menu</a></li>";
                         echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
+                        echo "<li class=\"nav-item\"><a href=\"cart.php\" class=\"nav-link\">Cart</a></li>";
                         echo "<div class=\"nav-item\"><a class=\"nav-link\">$namauser</a></div>";
                         echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
                     } else {
@@ -299,7 +299,8 @@
     <script src="js/jquery.animateNumber.min.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/jquery.timepicker.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+    </script>
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
 

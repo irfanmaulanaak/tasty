@@ -33,20 +33,19 @@
 
 <body>
     <?php
-  session_start();
-  $namauser = $_SESSION['user_system_name'];
-  include_once "db.php";
-  $sql1 = "SELECT * from user where name='$namauser'";
-  $result1 = $mysqli->query($sql1);
-  $username = $result1->fetch_object();
+    session_start();
+    $namauser = $_SESSION['user_system_name'];
+    include_once "db.php";
+    $sql1 = "SELECT * from user where name='$namauser'";
+    $result1 = $mysqli->query($sql1);
+    $username = $result1->fetch_object();
 
-  ?>
+    ?>
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">Tasty</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
@@ -55,17 +54,17 @@
                     <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
                     <?php
-          if (isset($_SESSION['user_system_name'])) {
-            echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
-            echo "<li class=\"nav-item active\"><a href=\"cart.php\" class=\"nav-link\">Cart</a></li>";
-            echo "<div class=\"nav-item\"><a class=\"nav-link\">$namauser</a></div>";
-            echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
-          } else {
-            echo "<li class=\"nav-item\" id=\"register\" style=\"border-style: solid; border-width: 2px; border-color: #ffff ;border-radius: 5px; margin: 5px;\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
-            echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px; margin: 5px;\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
-            // header('Location: index.php');
-          }
-          ?>
+                    if (isset($_SESSION['user_system_name'])) {
+                        echo "<li class=\"nav-item\"><a href=\"reservation.php\" class=\"nav-link\">Reservation</a></li>";
+                        echo "<li class=\"nav-item active\"><a href=\"cart.php\" class=\"nav-link\">Cart</a></li>";
+                        echo "<div class=\"nav-item\"><a class=\"nav-link\">$namauser</a></div>";
+                        echo "<div class=\"nav-item\"style=\"background: #ffc107 ;border-radius: 5px\"><a class=\"nav-link\"href=\"logout.php\">Logout</a></div>";
+                    } else {
+                        echo "<li class=\"nav-item\" id=\"register\" style=\"border-style: solid; border-width: 2px; border-color: #ffff ;border-radius: 5px; margin: 5px;\"><a href=\"register.php\" class=\"nav-link\" style=\"font-weight: 500;\">REGISTER</a></li>";
+                        echo "<li class=\"nav-item\" id=\"login\" style=\"background: #ffc107 ;border-radius: 5px; margin: 5px;\"><a href=\"login.php\" class=\"nav-link\" style=\"font-weight: 500;\">LOGIN</a></li>";
+                        // header('Location: index.php');
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -107,32 +106,36 @@
                     <tbody>
                         <!-- <tr>
                             <td data-th="Product"> -->
-                                <?php
-                include_once "db.php";
-                $sql = "SELECT * from cart";
-                $result = $mysqli->query($sql);
-                if ($result->num_rows) {
-                  while ($post = $result->fetch_object()) {
-                    echo "
-                    <tr>
-                    <td data-th=\"Product\">
-                  <div class=\"row\">
-                  <div class=\"col-sm-3\"><img src=\"$post->foto_produk\" width=\"90\" height=\"90\" /></div>
-                  <div class=\"col-sm-9\">
-                    <h4 class=\"nomargin\">$post->nama_produk</h4>
-                    <button class=\"btn btn-info btn-sm\"><i class=\"fa fa-refresh\"></i></button>
-                    <button class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash-o\"></i></button>
-                    <td data-th=\"Price\">$post->harga_produk</td>
+                        <?php
+                        include_once "db.php";
+                        $sql = "SELECT * from cart";
+                        $result = $mysqli->query($sql);
+                        $total = 0;
+                        if ($result->num_rows) {
+                            while ($post = $result->fetch_object()) {
+                                echo "
+                                <form action=\"delete_cart.php\" method=\"post\">
+                                <tr>
+                                    <td data-th=\"Product\">
+                                        <div class=\"row\">
+                                            <input type=\"hidden\" name=\"idcart\" value=\"$post->id_cart\">
+                                            <input type=\"hidden\" name=\"namprod\" value=\"$post->nama_produk\">
+                                            <div class=\"col-sm-3\"><img src=\"$post->foto_produk\" width=\"90\" height=\"90\" /></div>
+                                            <div class=\"col-sm-9\">
+                                                <h4 class=\"nomargin\">$post->nama_produk</h4>
+                                                <input type=\"submit\" value=\"Hapus\" class=\"btn btn-danger btn-sm fa fa-trash-o\">
+                                    <td data-th=\"Price\">$post->harga_produk</td>";
+                                    $total += $post->harga_produk;
+                                    echo"</div>
+                                    </div>
+                                    </td>
+                                </tr>
+                            </form>               
+                            ";
+                            }
+                        }
 
-                  </div>
-                </div>
-                </td>
-                </tr>                
-                  ";
-                  }
-                }
-
-                ?>
+                        ?>
 
                     </tbody>
                     <tfoot>
@@ -140,9 +143,8 @@
                             <td><a href="reservation.php" class="btn btn-warning"><i class="fa fa-angle-left"></i>
                                     Continue Shopping</a></td>
                             <td colspan="2" class="hidden-xs"></td>
-                            <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-                            <td><a href="#" class="btn btn-success btn-block">Checkout <i
-                                        class="fa fa-angle-right"></i></a></td>
+                            <td class="hidden-xs text-center"><strong>Total Rp.<?php echo($total);?></strong></td>
+                            <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -170,13 +172,13 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Jam Kerja</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">Senin: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Selasa: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Rabu: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Kamis: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Jumat: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Sabtu: <span>08: - 22:00</span></a></li>
-                            <li><a href="#" class="py-2 d-block">Minggu: <span>08: - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Senin: <span>08:00 - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Selasa: <span>08:00 - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Rabu: <span>08:00 - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Kamis: <span>08:00 - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Jumat: <span>08:00 - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Sabtu: <span>08:00 - 22:00</span></a></li>
+                            <li><a href="#" class="py-2 d-block">Minggu: <span>08:00 - 22:00</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -211,9 +213,8 @@
                     <p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;<script>
-                        document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="icon-heart"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
@@ -226,8 +227,7 @@
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" /></svg></div>
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
 
 
     <script src="js/jquery.min.js"></script>
@@ -247,6 +247,16 @@
     </script>
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
+    <!-- <script type="text/javascript">
+		function total() {
+		var jumlah = parseInt(document.getElementById('harga_algoritma').value);
+
+		var jumlah_harga = valgoritma + vjavascript + vphp;
+
+		document.getElementById('total').value = jumlah_harga;
+		}
+		
+		</script> -->
 
 </body>
 
