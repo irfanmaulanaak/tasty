@@ -122,22 +122,22 @@
                                 $result = $mysqli->query($sql);
                                 if ($result->num_rows) {
                                     while ($post = $result->fetch_object()) {
-                                        echo "<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\">
+                                        echo "<div class=\"col-lg-6\"><div class=\"menus d-flex ftco-animate\" style=\"position : relative\">
                                             <form method=\"GET\" action=\"cart_process.php\">
                                             <input class=\"input100\" type=\"hidden\" name=\"id_restaurant\ value=\"$id_restaurant\">
                                             <div class=\"menu-img\" style=\"background-image: url($post->foto_makanan);\"></div>
                                             <input class=\"input100\" type=\"hidden\" name=\"fotoprod\" value=\"$post->foto_makanan\">
                                             <div class=\"text d-flex\">
-                                                <div class=\"one-half\">
+                                                <div class=\"one-half \">
                                                     <h3>$post->nama_makanan</h3>
                                                     <input class=\"input100\" type=\"hidden\" name=\"namaprod\" value=\"$post->nama_makanan\">
                                                     <p>$post->deskripsi_makanan</p>
                                                 </div>
-                                                <div class=\"one-forth\">
+                                                <div class=\"one-forth \">
                                                     <span class=\"price\">Rp.$post->harga_makanan</span>
                                                     <input class=\"input100\" type=\"hidden\" name=\"hargaprod\" value=\"$post->harga_makanan\">
                                                     <input class=\"input100\" type=\"hidden\" name=\"username\" value=\"$username->username\">
-                                                    <input style=\"background: #ffc107 ;border-radius: 5px\" type=\"submit\" value=\"Beli\">
+                                                    <input style=\"background: #ffc107 ;border-radius: 5px; position: absolute; top: 20px; right: 20px; width: 200px;\" type=\"submit\" value=\"Beli\">
                                                 </div>
                                             </div>
                                             </form>
