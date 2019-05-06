@@ -99,13 +99,13 @@
     								<td class="no-line"></td>
     								<td class="no-line"></td>
     								<td class="no-line text-center"><strong>Tax</strong></td>
-    								<td class="no-line text-right">Rp.2000</td>
+    								<td class="no-line text-right"><?php echo 'Rp.',$total/10?></td>
     							</tr>
     							<tr>
     								<td class="no-line"></td>
     								<td class="no-line"></td>
     								<td class="no-line text-center"><strong>Total</strong></td>
-    								<td class="no-line text-right"><?php echo 'Rp.',$total+2000;?></td>
+							<td class="no-line text-right"><?php echo 'Rp.',$total+($total/10);?></td>
     							</tr>
     						</tbody>
     					</table>
